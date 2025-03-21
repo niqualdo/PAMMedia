@@ -5,94 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anna Sui Timeline</title>
     <style>
-Images
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
             background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
-        iframe {
-            width: 90%;
-            height: 90vh;
-            border: none;
-=======
-        body {
+        .image-container {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            flex-direction: row;
             height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
         }
-        img {
-            max-width: 90%;
-            max-height: 80vh;
-            border: 1px solid #ccc;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .controls {
-            margin-top: 10px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin: 5px;
-            cursor: pointer;
-            border: none;
-            background-color: #333;
-            color: white;
-            border-radius: 5px;
-        }
-        button:disabled {
-            background-color: #777;
-            cursor: not-allowed;
->>>>>>> main
+        .image-container img {
+            height: 100vh;
+            flex-shrink: 0;
         }
     </style>
 </head>
 <body>
-Images
-    <img id="flipbook" src="https://github.com/niqualdo/PAMMedia/raw/Images/2025_AnnaSui_Timeline_iPad_TEST_Page_01.jpg" alt="Flipbook Page">
-    <div class="controls">
-        <button id="prev" disabled>Previous</button>
-        <button id="next">Next</button>
-    </div>
-    
+    <div class="image-container" id="timeline"></div>
+
     <script>
-        let currentPage = 1;
-        const totalPages = 38;
+        const container = document.getElementById("timeline");
         const baseURL = "https://github.com/niqualdo/PAMMedia/raw/Images/2025_AnnaSui_Timeline_iPad_TEST_Page_";
-        const imageElement = document.getElementById("flipbook");
-        const prevButton = document.getElementById("prev");
-        const nextButton = document.getElementById("next");
-        
-        function updateImage() {
-            const pageNumber = String(currentPage).padStart(2, '0');
-            imageElement.src = `${baseURL}${pageNumber}.jpg`;
-            prevButton.disabled = currentPage === 1;
-            nextButton.disabled = currentPage === totalPages;
+
+        for (let i = 1; i <= 38; i++) {
+            const pageNumber = String(i).padStart(2, '0');
+            const img = document.createElement("img");
+            img.src = `${baseURL}${pageNumber}.jpg`;
+            img.alt = `Page ${i}`;
+            container.appendChild(img);
         }
-        
-        prevButton.addEventListener("click", () => {
-            if (currentPage > 1) {
-                currentPage--;
-                updateImage();
-            }
-        });
-        
-        nextButton.addEventListener("click", () => {
-            if (currentPage < totalPages) {
-                currentPage++;
-                updateImage();
-            }
-        });
     </script>
->>>>>>> main
 </body>
-</html>
+</html
